@@ -10,6 +10,8 @@ services:
         value: production
       - key: SECRET_KEY
         generateValue: true
+      - key: ADMIN_EMAIL
+        value: xavitimes1@gmail.com
       - key: MAIL_SERVER
         value: smtp.gmail.com
       - key: MAIL_PORT
@@ -17,10 +19,13 @@ services:
       - key: MAIL_USE_TLS
         value: true
       - key: MAIL_USERNAME
-        sync: false  # Will be set manually in Render dashboard
+        sync: false
       - key: MAIL_PASSWORD
-        sync: false  # Will be set manually in Render dashboard
-      - key: ADMIN_EMAIL
-        value: xavitimes1@gmail.com
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+
 
 
