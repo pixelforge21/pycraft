@@ -1,9 +1,21 @@
-.enroll-btn-container {
-    z-index: 999;
+body {
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: #f8f9fa;
+  color: #222;
+}
+.hero {
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.45);
+}
+.btn-success {
+  background: #2fa360;
+  border-color: #2fa360;
+}
+.card {
+  border: none;
+}
+.container form label {
+  font-weight: 600;
 }
 
-.hero-section {
-    color: white;
-    text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
-}
 
