@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+  <body>
+    <p>Hi {{ enrollment.name }},</p>
+    <p>Thanks for requesting enrollment at <strong>PyCraft</strong>. We have received your details:</p>
+    <ul>
+      <li>Name: {{ enrollment.name }}</li>
+      <li>Mobile: {{ enrollment.mobile }}</li>
+      <li>Class: {{ enrollment.student_class }}</li>
+      <li>Age: {{ enrollment.age }}</li>
+      <li>Email: {{ enrollment.email }}</li>
+    </ul>
+    <p>We will contact you shortly with seat confirmation and next steps.</p>
+    <p>Best,<br>PyCraft Team</p>
+  </body>
+</html>
+
