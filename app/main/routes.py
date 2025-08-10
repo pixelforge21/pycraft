@@ -1,7 +1,14 @@
-from flask import render_template
-from . import main
+from flask import Blueprint, render_template, url_for
+from datetime import datetime
 
-@main.route('/')
+main_bp = Blueprint("main_bp", __name__, template_folder="../templates", static_folder="../static")
+
+@main_bp.context_processor
+def inject_now():
+    return {"current_year": datetime.utcnow().year}
+
+@main_bp.route("/")
 def home():
-    return render_template('home.html')
+    return render_template("home.html")
+
 
