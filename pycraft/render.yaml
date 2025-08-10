@@ -1,1 +1,26 @@
+services:
+  - type: web
+    name: pycraft
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn run:app --bind 0.0.0.0:$PORT
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: SECRET_KEY
+        generateValue: true
+      - key: MAIL_SERVER
+        value: smtp.gmail.com
+      - key: MAIL_PORT
+        value: 587
+      - key: MAIL_USE_TLS
+        value: true
+      - key: MAIL_USERNAME
+        sync: false  # Will be set manually in Render dashboard
+      - key: MAIL_PASSWORD
+        sync: false  # Will be set manually in Render dashboard
+      - key: ADMIN_EMAIL
+        value: xavitimes1@gmail.com
+
 
