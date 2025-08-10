@@ -1,41 +1,42 @@
 {% extends "base.html" %}
 {% block content %}
-<section class="hero-section text-center text-white" style="background: url('{{ url_for('static', filename='images/hero-bg.jpg') }}') center/cover no-repeat; padding: 100px 20px;">
-    <h1 class="display-4 fw-bold">Welcome to PyCraft</h1>
-    <p class="lead">Learn Python from scratch to advanced with live coaching and real projects.</p>
+<section class="hero" style="background: url('{{ url_for('static', filename='images/hero-bg.jpg') }}') center/cover no-repeat; padding:120px 0;">
+  <div class="container text-white text-center">
+    <h1 class="display-4 fw-bold">Master Python with PyCraft</h1>
+    <p class="lead">Live coaching, real projects, certification — from beginner to pro.</p>
+    <div class="mt-4">
+      <a href="{{ url_for('auth_bp.login') }}" class="btn btn-lg btn-success">Enroll Now</a>
+    </div>
+  </div>
 </section>
 
 <div class="container my-5">
-    <div class="row g-4">
-        <div class="col-md-3">
-            <div class="card p-3 text-center shadow">
-                <h5>Beginner to Advanced</h5>
-                <p>Structured learning for all skill levels.</p>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card p-3 text-center shadow">
-                <h5>Expert Instructors</h5>
-                <p>Guidance from industry professionals.</p>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card p-3 text-center shadow">
-                <h5>Live & Recorded</h5>
-                <p>Attend live or watch recorded lessons anytime.</p>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card p-3 text-center shadow">
-                <h5>Certification</h5>
-                <p>Get certified upon course completion.</p>
-            </div>
-        </div>
+  <div class="row g-4">
+    <div class="col-md-3">
+      <div class="card p-3 text-center shadow-sm">
+        <h5>Beginner → Advanced</h5>
+        <p>Step-by-step curriculum.</p>
+      </div>
     </div>
-</div>
-
-<div class="enroll-btn-container text-center fixed-bottom mb-4">
-    <a href="#" class="btn btn-success btn-lg">Enroll Now</a>
+    <div class="col-md-3">
+      <div class="card p-3 text-center shadow-sm">
+        <h5>Expert Mentors</h5>
+        <p>Industry-experienced instructors.</p>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card p-3 text-center shadow-sm">
+        <h5>Live + Recorded</h5>
+        <p>Flexible learning options.</p>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card p-3 text-center shadow-sm">
+        <h5>Certification</h5>
+        <p>Get certified on completion.</p>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}
 
