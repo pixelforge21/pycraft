@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container" style="max-width:720px; margin-top:50px; text-align:center;">
+  <h3>✅ Enrollment Request Received</h3>
+  <p>Thanks {{ enrollment.name }} — we have received your enrollment request. We'll contact you at <strong>{{ enrollment.email }}</strong> or <strong>{{ enrollment.mobile }}</strong> shortly.</p>
+  <a href="{{ url_for('main_bp.home') }}" class="btn btn-primary mt-3">Back to Home</a>
+</div>
+{% endblock %}
