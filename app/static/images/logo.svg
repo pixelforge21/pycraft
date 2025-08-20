@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <!-- Blue part -->
-  <path d="M150 150 L256 80 L362 150 L362 280 L256 350 L150 280 Z" fill="#1a73e8"/>
-  <!-- Yellow part -->
-  <path d="M362 150 L440 200 L440 330 L362 280 Z" fill="#fbbc05"/>
-  <path d="M256 350 L362 280 L440 330 L334 400 Z" fill="#e2b000"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <!-- Blue block -->
+  <path d="M512 100 L300 230 L300 460 L512 590 L724 460 L724 230 Z" fill="#1a73e8"/>
+  <!-- Yellow block -->
+  <path d="M724 230 L880 320 L880 550 L724 460 Z" fill="#fbbc05"/>
+  <path d="M512 590 L724 460 L880 550 L668 680 Z" fill="#e2b000"/>
+  <!-- Inner cut (3D effect) -->
+  <path d="M512 100 L724 230 L724 460 L668 490 L668 260 L512 170 Z" fill="#0f5ed7"/>
   
   <!-- Text -->
-  <text x="50%" y="470" text-anchor="middle"
+  <text x="50%" y="920" text-anchor="middle"
         font-family="Arial, Helvetica, sans-serif"
         font-weight="700"
-        font-size="80"
+        font-size="180"
         fill="#0a0a0a">PYCRAFT</text>
 </svg>
 
