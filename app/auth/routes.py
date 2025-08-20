@@ -7,7 +7,7 @@ from ..email_utils import send_enrollment_emails
 
 auth_bp = Blueprint(
     "auth_bp",
-    _name_,
+    __name__,
     template_folder="../templates",
     static_folder="../static"
 )
