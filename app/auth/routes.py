@@ -5,12 +5,18 @@ from ..models import User, Enrollment
 from flask_login import login_user, logout_user, login_required, current_user
 from ..email_utils import send_enrollment_emails
 
-auth_bp = Blueprint("auth_bp", __name__, template_folder="../templates", static_folder="../static")
+auth_bp = Blueprint(
+    "auth_bp",
+    _name_,
+    template_folder="../templates",
+    static_folder="../static"
+)
 
-# user loader for flask-login
+# User loader for flask-login
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
 
 @auth_bp.route("/login", methods=["GET", "POST"])
 def login():
@@ -27,18 +33,20 @@ def login():
         flash("Invalid credentials", "danger")
     return render_template("auth/login.html", form=form)
 
+
 @auth_bp.route("/register", methods=["GET", "POST"])
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('main_bp.home'))
     form = RegisterForm()
     if form.validate_on_submit():
-        existing = User.query.filter_by(email=form.email.data).first()
-        if existing:
+        existing_user = User.query.filter_by(email=form.email.data).first()
+        if existing_user:
             flash("Account with that email already exists. Please login.", "warning")
             return redirect(url_for("auth_bp.login"))
-        hashed = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(name=form.name.data, email=form.email.data, password=hashed)
+
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user = User(name=form.name.data, email=form.email.data, password=hashed_password)
         db.session.add(user)
         db.session.commit()
         login_user(user)
@@ -46,10 +54,12 @@ def register():
         return redirect(url_for('main_bp.home'))
     return render_template("auth/register.html", form=form)
 
+
 @auth_bp.route("/google")
 def google_login():
     redirect_uri = url_for("auth_bp.google_callback", _external=True)
     return oauth.google.authorize_redirect(redirect_uri)
+
 
 @auth_bp.route("/google/callback")
 def google_callback():
@@ -69,7 +79,6 @@ def google_callback():
         db.session.add(user)
         db.session.commit()
     else:
-        # ensure google_id set
         if not user.google_id:
             user.google_id = google_id
             db.session.commit()
@@ -78,6 +87,7 @@ def google_callback():
     flash("Logged in with Google.", "success")
     return redirect(url_for('main_bp.home'))
 
+
 @auth_bp.route("/logout")
 @login_required
 def logout():
@@ -85,16 +95,18 @@ def logout():
     flash("Logged out.", "info")
     return redirect(url_for('main_bp.home'))
 
+
 @auth_bp.route("/enroll", methods=["GET", "POST"])
 @login_required
 def enroll():
-    """Protected: user must be logged in to enroll"""
+    """User enrollment (protected route)"""
     form = EnrollmentForm()
-    # prefill email and name if available
-    if request.method == "GET":
-        if current_user.is_authenticated:
-            form.email.data = current_user.email
-            form.name.data = current_user.name or ""
+
+    # Prefill form if GET
+    if request.method == "GET" and current_user.is_authenticated:
+        form.email.data = current_user.email
+        form.name.data = current_user.name or ""
+
     if form.validate_on_submit():
         enrollment = Enrollment(
             user_id=current_user.id,
@@ -106,12 +118,15 @@ def enroll():
         )
         db.session.add(enrollment)
         db.session.commit()
-        # send emails (student + admin)
+
+        # Send emails (student + admin)
         try:
             send_enrollment_emails(enrollment)
         except Exception as e:
             current_app.logger.error("Email send error: %s", e)
+
         return render_template("enroll_success.html", enrollment=enrollment)
+
     return render_template("enroll.html", form=form)
 
 
